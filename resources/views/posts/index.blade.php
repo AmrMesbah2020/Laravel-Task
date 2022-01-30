@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="text-center">
-            <a href="#" class="btn btn-success">Create Post</a>
+            <a href="{{route('posts.create')}}" class="btn btn-success">Create Post</a>
 </div>
 
 <table class="table">
@@ -24,7 +24,7 @@
       <td>{{$post['posted_by']}}</td>
       <td>{{$post['created_at']}}</td>
       <td>
-      <a href="" class="btn btn-success">view</a>
+      <a href="{{route('posts.show',1)}}" class="btn btn-success">view</a>
       <a href="" class="btn btn-primary">edit</a>
       <a href="" class="btn btn-danger">delete</a>
       </td>
