@@ -8,9 +8,9 @@
     Post info
   </div>
   <div class="card-body">
-    <h5 class="card-title">title:- Special title treatment</h5>
-    <h3>Description :-</h3>
-    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+    <h5 class="card-title"><small>title:- </small>{{$post->title}}</h5>
+    <h3><small>Description :- </small>{{$post['description']}} </h3>
+    <p class="card-text"><small> created at : </small>{{ \Carbon\Carbon::parse($post['created_at'])->format('d-M-Y') }}</p>
   </div>
 </div>
 
@@ -19,9 +19,9 @@
     post creator info
   </div>
   <div class="card-body">
-    <h5 class="card-title">name :- Ahmed</h5>
-    <h5 class="card-title">email :- Ahmed</h5>
-    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+    <h5 class="card-title"><small>name : </small>{{$post->user->name}}</h5>
+    <h5 class="card-title"><small>email :- </small>{{$post->user->email}}</h5>
+    <p class="card-text"><small>ID : </small>{{$post->user->id}}</p>
   </div>
 </div>
 

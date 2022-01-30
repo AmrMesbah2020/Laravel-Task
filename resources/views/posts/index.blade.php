@@ -10,6 +10,7 @@
 <table class="table">
   <thead>
     <tr>
+    <th scope="col">#</th>
       <th scope="col">title</th>
       <th scope="col">posted by</th>
       <th scope="col">created at</th>
@@ -19,14 +20,16 @@
   <tbody>
       @foreach($posts as $post)
     <tr>
-      <th scope="row">1</th>
+      <th scope="row">{{$post['id']}}</th>
       <td>{{$post['title']}}</td>
-      <td>{{$post['posted_by']}}</td>
-      <td>{{$post['created_at']}}</td>
+      <td>{{ isset($post->user) ? $post->user->name : 'Not Found' }}</td>
+      <td>{{\Carbon\Carbon::parse($post['created_at'])->format('d-M-Y')}}</td>
       <td>
-      <a href="{{route('posts.show',1)}}" class="btn btn-success">view</a>
-      <a href="" class="btn btn-primary">edit</a>
-      <a href="" class="btn btn-danger">delete</a>
+      <a href="{{route('posts.show',$post['id'])}}" class="btn btn-success">view</a>
+
+      <a href="{{route('posts.edit',$post['id'])}}" class="btn btn-primary">edit</a>
+
+      <a href="{{route('posts.destroy',$post['id'])}}" class="btn btn-danger" id="delete" onClick="return confirm('are you sure??')">delete</a>
       </td>
     </tr>
     @endforeach
