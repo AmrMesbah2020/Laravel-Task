@@ -51,7 +51,7 @@ class PostController extends Controller
         return view('posts.edit',['post' => $post]);
     }
 
-    public function update(UpdatePostRequest $request){
+    public function update(StorePostRequest $request){
         // dd($request);
         $data = Post::find($request->id);
         $data->title=$request->title;
