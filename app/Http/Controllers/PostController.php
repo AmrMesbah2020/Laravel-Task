@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 
-use Illuminate\Http\Request;
+
 use App\Models\Post;
 use App\Models\User;
 use App\Http\Requests\StorePostRequest;
-use App\Http\Requests\UpdatePostRequest;
+
 
 class PostController extends Controller
 {
@@ -29,11 +29,14 @@ class PostController extends Controller
 
     public function store(StorePostRequest $req){
         $data = $req->all();
-
+        // dd($data);
+        $path=$req->file('photo')->store('post photos');
+        // dd($path);
         Post::create([
             'title' => $data['title'],
             'description' => $data['description'],
             'user_id' => $data['post_creator'],
+            'photo'=>$path,
         ]);
 
 
