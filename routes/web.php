@@ -2,6 +2,8 @@
 use App\Http\Controllers\PostController;
 
 use Illuminate\Support\Facades\Route;
+use Laravel\Socialite\Facades\Socialite;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,3 +40,21 @@ Route::post('posts/update',[PostController::class,'update'])->name('posts.update
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/auth/redirect', function () {
+    return Socialite::driver('github')->redirect();
+})->name('github.auth');
+
+Route::get('/auth/callback', function () {
+    $user = Socialite::driver('github')->user();
+
+    $post = User::create([
+
+        'name' => $user['name'],
+        'email' => $user['email'],
+        'password'=>"1425"
+    ]);
+
+    return redirect(route('posts.index'));
+
+});

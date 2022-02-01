@@ -38,4 +38,6 @@
   </tbody>
 </table>
 
+<ul class="pagination">{{ $posts->links() }}</ul>
+
 @endsection

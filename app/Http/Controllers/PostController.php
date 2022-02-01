@@ -13,7 +13,8 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::all();
+        // $allPosts = Post::SimplePaginate(3);
+        $posts = Post::SimplePaginate(3);
         return view('posts.index', [
             'posts' => $posts
         ]);
