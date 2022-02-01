@@ -14,7 +14,8 @@
 
     <h5 class="card-title"><small>title:- </small>{{$post->title}}</h5>
     <h3><small>Description :- </small>{{$post['description']}} </h3>
-    <p class="card-text"><small> created at : </small>{{ \Carbon\Carbon::parse($post['created_at'])->format('d-M-Y') }}</p>
+    <p class="card-text"><small> created at : </small>{{ \Carbon\Carbon::parse($post['created_at'])->format('M-Y') }}</p>
+    <p class="card-text"><small> last update : </small>{{ \Carbon\Carbon::parse($post['updated_at'])->format('d-m-Y') }}</p>
   </div>
 </div>
 

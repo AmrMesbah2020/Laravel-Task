@@ -30,8 +30,10 @@
       <a href="{{route('posts.show',$post['slug'])}}" class="btn btn-success">view</a>
 
       <a href="{{route('posts.edit',$post['slug'])}}" class="btn btn-primary">edit</a>
-
-      <a href="{{route('posts.destroy',$post['id'])}}" class="btn btn-danger" id="delete" onClick="return confirm('are you sure??')">delete</a>
+        <form style="display: inline-block" action="{{route('posts.destroy',$post['id'])}}" method="POST">
+           @csrf @method('DELETE')
+      <button type="submit" class="btn btn-danger" id="delete" onClick="return confirm('are you sure??')">delete</button>
+    </form>
       </td>
     </tr>
     @endforeach

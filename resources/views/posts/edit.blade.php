@@ -13,8 +13,9 @@
     </ul>
 </div>
 @endif
-<form method="post" action="{{ route('posts.update')}}">
+<form method="POST" action="{{ route('posts.update',$post->id)}}">
             @csrf
+            @method('PUT')
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Title</label>
                 <input type="text" class="form-control" id="exampleFormControlInput1" name="title" value="{{$post['title']}}">

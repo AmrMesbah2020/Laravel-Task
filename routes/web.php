@@ -27,13 +27,14 @@ Route::get('/posts/create',[PostController::class,'create'])->name('posts.create
 
 Route::post('/posts',[PostController::class, 'store'])->name('posts.store');
 
-Route::get('/posts/delete/{post}',[PostController::class,'destroy'])->name('posts.destroy');
+Route::delete('/posts/delete/{post}',[PostController::class,'destroy'])->name('posts.destroy');
 
-Route::get('/posts/edit/{slug}',[PostController::class,'edit'])->name('posts.edit');
+Route::get('/posts/{slug}/edit',[PostController::class,'edit'])->name('posts.edit');
+Route::put('posts/{slug}',[PostController::class,'update'])->name('posts.update');
 
 Route::get('/posts/{slug}',[PostController::class,'show'])->name('posts.show');
 
-Route::post('posts/update',[PostController::class,'update'])->name('posts.update');
+
 
 
 
