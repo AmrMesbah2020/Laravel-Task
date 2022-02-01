@@ -14,7 +14,7 @@ class PostController extends Controller
     public function index()
     {
         // $allPosts = Post::SimplePaginate(3);
-        $posts = Post::SimplePaginate(3);
+        $posts = Post::SimplePaginate(10);
         return view('posts.index', [
             'posts' => $posts
         ]);
@@ -28,10 +28,10 @@ class PostController extends Controller
         ]);
     }
 
-    public function store(StorePostRequest $req){
-        $data = $req->all();
+    public function store(StorePostRequest $reqest){
+        $data = $reqest->all();
         // dd($data);
-        $path=$req->file('photo')->store('post photos');
+        $path=$reqest->file('photo')->store('post photos');
         // dd($path);
         Post::create([
             'title' => $data['title'],
@@ -44,13 +44,13 @@ class PostController extends Controller
        return redirect()->route('posts.index');
     }
 
-    public function show($postID){
-        $post = Post::find($postID);
+    public function show($slug){
+        $post = Post::where('slug',$slug) ->first();
         return view('posts.view',['post' =>$post]);
     }
 
-    public function edit($postID){
-        $post = Post::find($postID);
+    public function edit($slug){
+        $post = Post::where('slug',$slug) ->first();
         // $user=User::find($post['user_id']);
         return view('posts.edit',['post' => $post]);
     }
@@ -60,6 +60,7 @@ class PostController extends Controller
         $data = Post::find($request->id);
         $data->title=$request->title;
         $data->description=$request->description;
+        $data->slug=$request->slug;
         $data->save();
        return redirect()->route('posts.index');
     }

@@ -29,9 +29,9 @@ Route::post('/posts',[PostController::class, 'store'])->name('posts.store');
 
 Route::get('/posts/delete/{post}',[PostController::class,'destroy'])->name('posts.destroy');
 
-Route::get('/posts/edit/{post}',[PostController::class,'edit'])->name('posts.edit');
+Route::get('/posts/edit/{slug}',[PostController::class,'edit'])->name('posts.edit');
 
-Route::get('/posts/{post}',[PostController::class,'show'])->name('posts.show');
+Route::get('/posts/{slug}',[PostController::class,'show'])->name('posts.show');
 
 Route::post('posts/update',[PostController::class,'update'])->name('posts.update');
 
@@ -47,14 +47,6 @@ Route::get('/auth/redirect', function () {
 
 Route::get('/auth/callback', function () {
     $user = Socialite::driver('github')->user();
-
-    $post = User::create([
-
-        'name' => $user['name'],
-        'email' => $user['email'],
-        'password'=>"1425"
-    ]);
-
     return redirect(route('posts.index'));
 
 });

@@ -27,9 +27,9 @@
       <td>{{\Carbon\Carbon::parse($post['created_at'])->format('d-M-Y')}}</td>
       <td>{{$post['slug']}}</td>
       <td>
-      <a href="{{route('posts.show',$post['id'])}}" class="btn btn-success">view</a>
+      <a href="{{route('posts.show',$post['slug'])}}" class="btn btn-success">view</a>
 
-      <a href="{{route('posts.edit',$post['id'])}}" class="btn btn-primary">edit</a>
+      <a href="{{route('posts.edit',$post['slug'])}}" class="btn btn-primary">edit</a>
 
       <a href="{{route('posts.destroy',$post['id'])}}" class="btn btn-danger" id="delete" onClick="return confirm('are you sure??')">delete</a>
       </td>

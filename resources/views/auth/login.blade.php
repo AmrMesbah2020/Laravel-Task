@@ -53,7 +53,8 @@
 
                         <div class="row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <a class="btn btn-dark" href="{{route('github.auth')}}">login with github</a>
+                                <a class="btn btn-danger" href="#">Login with Google+</a>
+                                <a class="btn btn-dark" href="{{route('github.auth')}}">Login with Github</a>
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Login') }}
                                 </button>

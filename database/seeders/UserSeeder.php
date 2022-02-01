@@ -17,6 +17,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+        for($i=0;$i<50;$i++){
         DB::table('users')->insert([
             'name' => Str::random(10),
             'email' => Str::random(10).'@gmail.com',
@@ -24,5 +25,6 @@ class UserSeeder extends Seeder
             'created_at'=>Carbon::getTestNow(),
             'updated_at'=>Carbon::tomorrow(),
         ]);
+    }
     }
 }

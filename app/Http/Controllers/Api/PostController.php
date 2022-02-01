@@ -11,12 +11,12 @@ use App\Http\Requests\StorePostRequest;
 class PostController extends Controller
 {
    public function index(){
-       $posts=Post::all();
-    // $data = Post::with('user_id')->get();
+    //    $posts=Post::all();
+    $data = Post::with('user')->get();
     // foreach($data as $post){
     //    echo $post->user->name;
     // }
-       return PostResource::collection($posts);
+       return PostResource::collection($data);
    }
 
    public function show($postId){
