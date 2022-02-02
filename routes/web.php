@@ -21,7 +21,7 @@ Route::get('/', function () {
 });
 
 
-Route::get('/posts', [PostController::class, 'index'])->name('posts.index')->middleware('auth');
+Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
 
 Route::get('/posts/create',[PostController::class,'create'])->name('posts.create');
 
@@ -42,12 +42,23 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/auth/redirect', function () {
+
+
+Route::get('/auth/redirect/github', function () {
     return Socialite::driver('github')->redirect();
 })->name('github.auth');
 
-Route::get('/auth/callback', function () {
+Route::get('/auth/github/callback', function () {
     $user = Socialite::driver('github')->user();
-    return redirect(route('posts.index'));
+    return redirect(route('posts.index'));});
 
-});
+
+
+Route::get('/auth/redirect/google', function () {
+    return Socialite::driver('google')->redirect();
+})->name('google.auth');
+
+Route::get('/auth/google/callback', function () {
+    $user = Socialite::driver('google')->user();
+    // dd($user);
+    return redirect(route('posts.index'));});
