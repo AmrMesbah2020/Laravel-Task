@@ -55,7 +55,8 @@
                             <div class="col-md-8 offset-md-4">
                                 <a class="btn btn-danger" href="{{route('google.auth')}}">Login with Google+</a>
                                 <a class="btn btn-dark" href="{{route('github.auth')}}">Login with Github</a>
-                                <button type="submit" class="btn btn-primary">
+                                <a class="btn btn-primary" href="{{route('facebook.auth')}}">Login with Facebook</a>
+                                <button type="submit" class="btn btn-success">
                                     {{ __('Login') }}
                                 </button>
 

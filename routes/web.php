@@ -62,3 +62,13 @@ Route::get('/auth/google/callback', function () {
     $user = Socialite::driver('google')->user();
     // dd($user);
     return redirect(route('posts.index'));});
+
+
+Route::get('/auth/redirect/facebook', function () {
+    return Socialite::driver('facebook')->redirect();
+})->name('facebook.auth');
+
+Route::get('/auth/facebook/callback', function () {
+    $user = Socialite::driver('facebook')->user();
+    dd($user);
+    return redirect(route('posts.index'));});
