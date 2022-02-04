@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\PostController;
 
 use Illuminate\Support\Facades\Route;
@@ -34,13 +36,9 @@ Route::put('posts/{slug}',[PostController::class,'update'])->name('posts.update'
 
 Route::get('/posts/{slug}',[PostController::class,'show'])->name('posts.show');
 
+Auth::routes(['verify' => true]);
 
-
-
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('verified');
 
 
 
@@ -60,7 +58,7 @@ Route::get('/auth/redirect/google', function () {
 
 Route::get('/auth/google/callback', function () {
     $user = Socialite::driver('google')->user();
-    // dd($user);
+    dd($user);
     return redirect(route('posts.index'));});
 
 
@@ -70,5 +68,6 @@ Route::get('/auth/redirect/facebook', function () {
 
 Route::get('/auth/facebook/callback', function () {
     $user = Socialite::driver('facebook')->user();
-    dd($user);
+    // dd($user);
     return redirect(route('posts.index'));});
+
